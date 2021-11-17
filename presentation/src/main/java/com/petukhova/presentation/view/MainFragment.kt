@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import com.petukhova.presentation.adapter.AdapterCurrency
 import com.petukhova.presentation.databinding.FragmentMainBinding
 import com.petukhova.presentation.view.viewmodel.MainViewModel
+import java.text.SimpleDateFormat
 
 class MainFragment : Fragment() {
     internal lateinit var viewModel: MainViewModel
@@ -38,8 +39,12 @@ class MainFragment : Fragment() {
 //        viewModel.getCurrencyLiveData().observe(requireActivity(), {
 //            adapter.submitList(it.data)
 //        })
-        viewModel.getCurrencyLiveData().observe(viewLifecycleOwner, {
-            adapter.submitList(it.data)
+        viewModel.getCurrencyLiveData().observe(viewLifecycleOwner, {binding.inputDate.text =
+           it.keys.toString()
+            for(currency in it.values)
+                adapter.submitList(currency)
+
+
         })
 
 

@@ -1,6 +1,7 @@
-package com.petukhova.data.model
+package com.petukhova.model
 
 import com.google.gson.annotations.SerializedName
+import com.petukhova.model.CurrencyNetwork
 
 //формат ответа от сервера
 data class ModelResponseNetwork(

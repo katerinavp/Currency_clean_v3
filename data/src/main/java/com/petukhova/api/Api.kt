@@ -1,6 +1,6 @@
 package com.petukhova.api
 
-import com.petukhova.data.model.ModelResponseNetwork
+import com.petukhova.model.ModelResponseNetwork
 import io.reactivex.Single
 import retrofit2.http.GET
 

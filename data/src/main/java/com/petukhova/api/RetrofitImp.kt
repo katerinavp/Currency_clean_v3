@@ -2,7 +2,7 @@ package com.petukhova.api
 
 import android.util.Log
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-import com.petukhova.data.db.util.Constants.BASE_URL
+import com.petukhova.util.Constants.BASE_URL
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 

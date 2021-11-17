@@ -1,20 +1,18 @@
 package com.petukhova.data
 
-import CurrencyModelMapper
 import android.util.Log
-import com.petukhova.api.RetrofitService
-import com.petukhova.domain.model.DomainCurrencyModel
-import com.petukhova.domain.model.DomainCurrencyNetwork
+import com.petukhova.api.Api
+import com.petukhova.domain.model.DomainCurrency
 import com.petukhova.domain.repository.CurrencyRepository
+import com.petukhova.mappers.CurrencyModelMapper
 import io.reactivex.Single
 
-class CurrencyRepositoryImpl : CurrencyRepository {
-    private val apiService = RetrofitService()
-    val currencyModelMapper = CurrencyModelMapper()
+class CurrencyRepositoryImpl(private val api : Api, private val currencyModelMapper : CurrencyModelMapper) : CurrencyRepository {
 
-    override fun getCurrencyFromNetwork(): Single<List<DomainCurrencyNetwork>> {
+
+    override fun getCurrencyFromNetwork(): Single<Map<String, List<DomainCurrency>>> {
         Log.i("serv)", "etCurrencyFromNetwork() ")
-        return apiService.getData().map(currencyModelMapper::map)
+        return api.getCurrency().map(currencyModelMapper::map)
 
     }
 

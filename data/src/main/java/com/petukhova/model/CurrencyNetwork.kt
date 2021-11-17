@@ -1,4 +1,4 @@
-package com.petukhova.data.model
+package com.petukhova.model
 
 import com.google.gson.annotations.SerializedName
 //import com.petukhova.data.entity.Currency

@@ -1,4 +1,4 @@
-package com.petukhova.data.db.util
+package com.petukhova.util
 
 object Constants {
 
