@@ -1,5 +1,6 @@
 package com.petukhova.presentation.view
 
+import android.app.Fragment
 import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.util.Log
@@ -9,10 +10,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.petukhova.presentation.adapter.AdapterCurrency
 import com.petukhova.presentation.databinding.FragmentMainBinding
+import com.petukhova.presentation.di.MainFragmentModule
 import com.petukhova.presentation.view.viewmodel.MainViewModel
-import java.text.SimpleDateFormat
+import javax.inject.Inject
 
 class MainFragment : Fragment() {
+    @Inject
     internal lateinit var viewModel: MainViewModel
     private val binding by lazy(LazyThreadSafetyMode.NONE) {
         FragmentMainBinding.inflate(LayoutInflater.from(requireContext()))
@@ -20,7 +23,15 @@ class MainFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        MainFragmentDependencyProvider.inject(this)
+        DaggerMainFragmentComponent
+            .factory()
+            .create(
+                this,
+                dependencyProviders = dependencyProviders,
+                MainFragmentModule()
+            )
+            .inject(this)
+//        MainFragmentDependencyProvider.inject(this)
         Log.i("onCreate" , "MainFragment")
     }
 

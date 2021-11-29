@@ -14,15 +14,30 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        dependencyProvider = object : DependencyProviders {
-            override fun getInteractor(): CurrencyInteractor {
-                return CurrencyInteractor(getRepository())
-            }
+        lateinit var appComponent: AppComponent
 
-            override fun getRepository(): CurrencyRepository {
-                return CurrencyRepositoryImpl(RetrofitImp().getApi(), CurrencyModelMapper())
-            }
+        override fun onCreate() {
+            super.onCreate()
+            appComponent = DaggerAppComponent
+                .factory()
+                .build(
+                    context = this,
+                    resource = resources,
+                    AppModule()
+                )
 
+            dependencyProvider = appComponent
         }
+
+//        dependencyProvider = object : DependencyProviders {
+//            override fun getInteractor(): CurrencyInteractor {
+//                return CurrencyInteractor(getRepository())
+//            }
+//
+//            override fun getRepository(): CurrencyRepository {
+//                return CurrencyRepositoryImpl(RetrofitImp().getApi(), CurrencyModelMapper())
+//            }
+//
+//        }
     }
 }
