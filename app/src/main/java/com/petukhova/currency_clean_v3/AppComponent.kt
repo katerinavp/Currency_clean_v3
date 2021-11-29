@@ -9,7 +9,6 @@ import com.petukhova.domain.repository.CurrencyRepository
 import dagger.*
 import javax.inject.Singleton
 
-
 @Singleton
 @Component(modules = [AppModule::class])
 interface AppComponent {
