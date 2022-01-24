@@ -7,7 +7,7 @@ import com.petukhova.domain.repository.CurrencyRepository
 import com.petukhova.mappers.CurrencyModelMapper
 import io.reactivex.Single
 
-class CurrencyRepositoryImpl(private val api : Api, private val currencyModelMapper : CurrencyModelMapper) : CurrencyRepository {
+class CurrencyRepositoryImpl (private val api : Api, private val currencyModelMapper : CurrencyModelMapper) : CurrencyRepository {
 
 
     override fun getCurrencyFromNetwork(): Single<Map<String, List<DomainCurrency>>> {

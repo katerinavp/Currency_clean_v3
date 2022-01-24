@@ -7,12 +7,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.petukhova.domain.dependencyprovider.dependencyProvider
 import com.petukhova.presentation.adapter.AdapterCurrency
 import com.petukhova.presentation.databinding.FragmentMainBinding
 import com.petukhova.presentation.view.viewmodel.MainViewModel
 import java.text.SimpleDateFormat
+import javax.inject.Inject
 
 class MainFragment : Fragment() {
+    @Inject
     internal lateinit var viewModel: MainViewModel
     private val binding by lazy(LazyThreadSafetyMode.NONE) {
         FragmentMainBinding.inflate(LayoutInflater.from(requireContext()))
@@ -21,6 +24,15 @@ class MainFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         MainFragmentDependencyProvider.inject(this)
+        DaggerAppComponent
+            .factory()
+            .create(
+                this,
+                domainDiProvider = dependencyProvider,
+                MainFragmentDependencyProvider()
+            )
+            .inject(this)
+
         Log.i("onCreate" , "MainFragment")
     }
 

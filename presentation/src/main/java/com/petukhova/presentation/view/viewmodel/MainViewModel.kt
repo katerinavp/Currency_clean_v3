@@ -8,8 +8,9 @@ import com.petukhova.domain.model.DomainCurrency
 import com.petukhova.presentation.view.BaseViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
-class MainViewModel( private val currencyInteractor: CurrencyInteractor): BaseViewModel() {
+class MainViewModel @Inject constructor( private val currencyInteractor: CurrencyInteractor): BaseViewModel() {
     private val _domainCurrencyModel: MutableLiveData<Map<String, List<DomainCurrency>>> by lazy {
         MutableLiveData<Map<String, List<DomainCurrency>>>()
     }
